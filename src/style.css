@@ -60,3 +60,31 @@ hr{
     background-color: #d4d4d4;
     
 }
+
+.render-countries{
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+.country-container{
+    margin: 0.8rem;
+
+    padding: 10px;
+    background-color: #f1f2f1;
+    border: 0.1px solid #e1e1e1;
+    border-radius: 0.8rem;
+    color: #191923;
+}
+.country-container h2{
+    text-align: center;
+    border-bottom: 0.1px solid #191923;
+    font-weight: 400;
+    padding: 0 0 0.2rem 0;
+}
+.flag-and-coat img{
+    height: 4rem;
+    margin-right: 0.5rem;
+    margin-top: 0.5rem;
+}
+.hide{
+    display: none;
+}
