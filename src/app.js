@@ -5,8 +5,11 @@ const fetchCountries = (APP_URL) => {
     try {
         fetch(APP_URL)
         .then(res => res.json())
-        .then(data => countryInfo(data))
-        .catch(e => console.log(e.message))
+        .then(data => {
+            countryInfo(data)
+            console.log(data);
+        })
+        .catch(e => console.log(e))
     } catch (error) {
         console.log(error.message)
     }
@@ -28,10 +31,16 @@ const countryInfo = data => {
 
         const capitalCity = document.createElement('p');
         capitalCity.classList.add('capital-city')
-        
-        // populate elements 
-        countryName.innerHTML = `${data[i].name.official} - ${data[i].cca2}`
 
+        const languages = document.createElement('p');
+
+        
+        // POPULATE ELEMENTS
+        
+        // adding country name
+        countryName.innerHTML = `${data[i].name.common} - ${data[i].cca2}`
+
+        // adding flag and coat of arms images
         flag.src = data[i].flags.png;
         if(data[i].coatOfArms.png ===undefined){
             coatOfArms.classList.add('hide');
@@ -39,18 +48,38 @@ const countryInfo = data => {
             coatOfArms.src = data[i].coatOfArms.png
         }
 
-        capitalCity.innerHTML = `Capital - ${data[i].capital}`
+        // adding the capital city
+        if(data[i].capital === undefined){
+            capitalCity.innerHTML = 'Not an independent country'
+        }else{
+            capitalCity.innerHTML = `Capital - ${data[i].capital}`
+        }
+        
+        // dding languages
+        
+        languages.innerHTML = handleLangs(data[i].languages).join('')
 
         // append to the container div
         imageContainer.appendChild(flag);
         imageContainer.appendChild(coatOfArms);
 
+        // append elements to containing div
         countryContainer.appendChild(countryName);
         countryContainer.appendChild(imageContainer)
         countryContainer.appendChild(capitalCity)
+        countryContainer.appendChild(languages)
         // _____________________
         renderCountries.appendChild(countryContainer);
     }
 } 
+
+const handleLangs = (langs) => {
+    let langArr = [];
+    Object.keys(langs).forEach((key) => {
+        langArr.push(...langs[key] + ' ');
+    })
+    // console.log(langs)
+    return langArr;
+}
 
 window.onload = fetchCountries(APP_URL);
