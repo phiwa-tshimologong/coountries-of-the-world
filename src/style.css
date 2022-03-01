@@ -5,3 +5,58 @@
     margin: 0;
     font-family: sans-serif, Roboto;
 }
+
+header nav {
+    background-color: #0E79B2;
+    color: #fff;
+    display: flex;
+    padding: 0 5%;
+}
+.container{
+    padding: 0 5%;
+}
+.brand{
+    font-size: 3rem;
+}
+.search{
+    margin: 2rem auto ;
+    text-align: center;
+}
+.search form{
+    display: inline-flex;
+    margin: auto;
+}
+.search-bar{
+    font-size: 2rem;
+    border: 2px solid #191923;
+    border-radius: 2rem 0 0 2rem;
+    border-right: none;
+    padding: 0 2rem;
+}
+.search-bar:focus{
+
+    outline: none;
+    box-shadow: none;
+}
+.search-bar::placeholder{
+    color: #b1b1b1;
+}
+.submit-btn{
+    border: #191923 solid 2px;
+    border-left: none;
+    border-radius: 0 2rem 2rem 0;
+    cursor: pointer;
+}
+.submit-btn img{
+    height: 3rem;
+    width: 3rem;
+    border-radius: 0 2rem 2rem 0;
+}
+
+/* _____________________________ */
+hr{
+    border: none;
+    height: 0.5px;
+    background-color: #d4d4d4;
+    
+}
