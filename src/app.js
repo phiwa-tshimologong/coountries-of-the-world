@@ -25,9 +25,13 @@ const countryInfo = data => {
         imageContainer.classList.add('flag-and-coat');
         const flag = document.createElement('img');
         const coatOfArms = document.createElement('img');
+
+        const capitalCity = document.createElement('p');
+        capitalCity.classList.add('capital-city')
         
         // populate elements 
         countryName.innerHTML = `${data[i].name.official} - ${data[i].cca2}`
+
         flag.src = data[i].flags.png;
         if(data[i].coatOfArms.png ===undefined){
             coatOfArms.classList.add('hide');
@@ -35,12 +39,15 @@ const countryInfo = data => {
             coatOfArms.src = data[i].coatOfArms.png
         }
 
+        capitalCity.innerHTML = `Capital - ${data[i].capital}`
+
         // append to the container div
         imageContainer.appendChild(flag);
         imageContainer.appendChild(coatOfArms);
 
         countryContainer.appendChild(countryName);
         countryContainer.appendChild(imageContainer)
+        countryContainer.appendChild(capitalCity)
         // _____________________
         renderCountries.appendChild(countryContainer);
     }
