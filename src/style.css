@@ -18,7 +18,7 @@ header nav {
 .brand{
     font-size: 3rem;
 }
-.search{
+.letters{
     margin: 2rem auto ;
     text-align: center;
 }
@@ -91,8 +91,8 @@ hr{
 .capital-city{
     font-size: 1.2rem;
     margin: .2rem 0;
+    font-weight: 600;
 }
 .languages{
-    display: inline;
-    margin-top: 2rem;
+    margin: 0.4rem 0;
 }

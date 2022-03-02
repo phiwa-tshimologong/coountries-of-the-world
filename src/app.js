@@ -16,6 +16,7 @@ const fetchCountries = (APP_URL) => {
 }
 
 const countryInfo = data => {
+    
     // loop throu countries
     for(let i = 0; i <= data.length; i++){
         // create render elements
@@ -35,6 +36,7 @@ const countryInfo = data => {
         const languages = document.createElement('p');
         languages.classList.add('languages');
 
+        const population = document.createElement('p');
         
         // POPULATE ELEMENTS
         
@@ -51,11 +53,12 @@ const countryInfo = data => {
         }
         
 
-        capitalCity.innerHTML = handleCapitalCity(data[i].capital);
+        capitalCity.innerHTML = handleCapitalCity(data[i]);
         
-        // dding languages
-        
+        // adding languages
         languages.innerHTML = handleLangs(data[i].languages);
+
+        population.innerHTML = `Population: ${(data[i].population).toLocaleString()}`;
 
         // append to the container div
         imageContainer.appendChild(flagImg);
@@ -63,9 +66,10 @@ const countryInfo = data => {
 
         // append elements to containing div
         countryContainer.appendChild(countryName);
-        countryContainer.appendChild(imageContainer)
-        countryContainer.appendChild(capitalCity)
-        countryContainer.appendChild(languages)
+        countryContainer.appendChild(imageContainer);
+        countryContainer.appendChild(capitalCity);
+        countryContainer.appendChild(languages);
+        countryContainer.appendChild(population);
         // _____________________
         renderCountries.appendChild(countryContainer);
     }
@@ -74,10 +78,10 @@ const countryInfo = data => {
 
 const handleCapitalCity = (city) =>{
     // adding the capital city
-    if(city === undefined){
-        return'Not an independent country'
+    if(city.capital === undefined){
+        return `${city.continents} - Not an independent country`
     }else{
-        return `Capital - ${city}`
+        return `${city.continents} - ${city.capital}`
     }
 }
 
@@ -94,5 +98,7 @@ const handleLangs = (langs) => {
     // console.log(langs)
     return langArr.join('');
 }
+
+
 
 window.onload = fetchCountries(APP_URL);
