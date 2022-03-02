@@ -26,13 +26,14 @@ const countryInfo = data => {
         
         const imageContainer = document.createElement('div');
         imageContainer.classList.add('flag-and-coat');
-        const flag = document.createElement('img');
-        const coatOfArms = document.createElement('img');
+        const flagImg = document.createElement('img');
+        const coatOfArmsImg = document.createElement('img');
 
         const capitalCity = document.createElement('p');
         capitalCity.classList.add('capital-city')
 
         const languages = document.createElement('p');
+        languages.classList.add('languages');
 
         
         // POPULATE ELEMENTS
@@ -41,27 +42,24 @@ const countryInfo = data => {
         countryName.innerHTML = `${data[i].name.common} - ${data[i].cca2}`
 
         // adding flag and coat of arms images
-        flag.src = data[i].flags.png;
-        if(data[i].coatOfArms.png ===undefined){
-            coatOfArms.classList.add('hide');
+        flagImg.src = data[i].flags.png;
+  
+        if(data[i].coatOfArms.png === undefined){
+            coatOfArmsImg.classList.add('hide');
         }else{
-            coatOfArms.src = data[i].coatOfArms.png
+            coatOfArmsImg.src = data[i].coatOfArms.png
         }
+        
 
-        // adding the capital city
-        if(data[i].capital === undefined){
-            capitalCity.innerHTML = 'Not an independent country'
-        }else{
-            capitalCity.innerHTML = `Capital - ${data[i].capital}`
-        }
+        capitalCity.innerHTML = handleCapitalCity(data[i].capital);
         
         // dding languages
         
-        languages.innerHTML = handleLangs(data[i].languages).join('')
+        languages.innerHTML = handleLangs(data[i].languages);
 
         // append to the container div
-        imageContainer.appendChild(flag);
-        imageContainer.appendChild(coatOfArms);
+        imageContainer.appendChild(flagImg);
+        imageContainer.appendChild(coatOfArmsImg);
 
         // append elements to containing div
         countryContainer.appendChild(countryName);
@@ -73,13 +71,28 @@ const countryInfo = data => {
     }
 } 
 
+
+const handleCapitalCity = (city) =>{
+    // adding the capital city
+    if(city === undefined){
+        return'Not an independent country'
+    }else{
+        return `Capital - ${city}`
+    }
+}
+
 const handleLangs = (langs) => {
     let langArr = [];
-    Object.keys(langs).forEach((key) => {
-        langArr.push(...langs[key] + ' ');
-    })
+    if(langs === undefined){
+        return 'No official language';
+    }else{
+
+        Object.keys(langs).forEach((key) => {
+            langArr.push(...langs[key] + ' ');
+        })
+    }
     // console.log(langs)
-    return langArr;
+    return langArr.join('');
 }
 
 window.onload = fetchCountries(APP_URL);

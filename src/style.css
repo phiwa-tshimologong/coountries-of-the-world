@@ -67,12 +67,12 @@ hr{
 }
 .country-container{
     margin: 0.8rem;
-
     padding: 10px;
     background-color: #f1f2f1;
     border: 0.1px solid #e1e1e1;
     border-radius: 0.8rem;
     color: #191923;
+    display: block;
 }
 .country-container h2{
     text-align: center;
@@ -90,5 +90,9 @@ hr{
 }
 .capital-city{
     font-size: 1.2rem;
-    margin-top: .2rem;
+    margin: .2rem 0;
+}
+.languages{
+    display: inline;
+    margin-top: 2rem;
 }
