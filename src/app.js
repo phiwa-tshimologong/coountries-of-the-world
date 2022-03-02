@@ -16,7 +16,7 @@ const fetchCountries = (APP_URL) => {
 }
 
 const countryInfo = data => {
-    
+    // data.sort((a, b) => a.name.common.localeCompare(b.name.common))
     // loop throu countries
     for(let i = 0; i <= data.length; i++){
         // create render elements
